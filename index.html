@@ -171,11 +171,18 @@
        
         AOS.init();
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        window.onload = function () {
+    setTimeout(() => {
         window.scrollTo(0, 0);
-        window.onbeforeunload = function () {
-            window.scrollTo(0, 0);
-        };
+    }, 200); // Wait for 300ms before scrolling
+};
+
+window.onbeforeunload = function () {
+    setTimeout(() => {
         window.scrollTo(0, 0);
+    }, 200); // Wait for 300ms before scrolling
+};
+
     </script>
 </body>
 </html>
