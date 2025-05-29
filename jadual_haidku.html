@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadual Haidku - Muslim Women's Menstrual Tracker</title>
+    <style>
+        :root {
+            --primary: #FBC6D1;
+            --secondary: #FFCEE4;
+            --accent: #6D28D9;
+            --light: #FFF5F9;
+            --dark: #3E1149;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg , var(--accent), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        section {
+            margin: 3rem 0;
+        }
+        
+        h2 {
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .app-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .download-section {
+            text-align: center;
+            background: var(--secondary);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+        
+        .playstore-img {
+            max-width: 200px;
+            height: auto;
+            margin: 1rem auto;
+            display: block;
+            border-radius: 10px;
+        }
+        
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="playstore.png" alt="Jadual Haidku Logo" class="logo-img">
+            <div>
+                <h1>🌸 Jadual Haidku</h1>
+                <div class="tagline">Menstrual Tracker with Islamic Guidance for Muslim Women</div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <h2>Your Faith. Your Health. Your Schedule.</h2>
+            <p>Jadual Haidku is a free, easy-to-use mobile app designed specifically for Muslim women in Malaysia to track their menstrual cycles while staying aligned with Islamic practices and rulings. We understand that menstruation affects your solat (prayer), puasa (fasting), and spiritual routine—and we're here to help.</p>
+        </section>
+        
+        <section>
+            <h2>🕌 Why Jadual Haidku?</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>Faith-Aligned Tracking</h3>
+                    <p>Log your menstrual cycle with confidence, using a Hijri calendar synced to religious observances.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📿</div>
+                    <h3>Solat & Puasa Guidance</h3>
+                    <p>Know when you're exempt from worship, when to resume solat, and how to replace missed fasts with clear reminders.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🩸</div>
+                    <h3>Understand Istihadah</h3>
+                    <p>Get insights to distinguish between normal periods and istihadah (irregular bleeding), helping you follow religious duties accurately.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Private & Secure</h3>
+                    <p>Your health and spiritual data are sensitive—we treat them with utmost privacy and protection.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="app-preview">
+            <div>
+                <h2>📱 Features at a Glance</h2>
+                <ul>
+                    <li>Personalized Cycle Calendar with color-coded indicators</li>
+                    <li>Solat & Puasa Tracker aligned with local prayer times</li>
+                    <li>Smart notifications for religious obligations</li>
+                    <li>Educational Resources on menstrual health & Islamic rulings</li>
+                    <li>Secure user profile and customization options</li>
+                    <li>Optimized for Android devices – Free to use</li>
+                </ul>
+            </div>
+            <div>
+                <img src="playstore.png" alt="App Preview" style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+            </div>
+        </section>
+        
+        <section>
+            <h2>🌺 For Muslim Women, By Design</h2>
+            <p>Jadual Haidku is built with cultural sensitivity and spiritual accuracy in mind. Whether you're planning your ibadah, tracking your cycle, or just seeking clarity, this app supports you every step of the way—with compassion, faith, and privacy.</p>
+        </section>
+        
+        <section class="download-section">
+            <h2>📥 Download Jadual Haidku Today</h2>
+            <p>Empower your spiritual journey with knowledge and confidence.</p>
+            
+            <div class="badge">✅ Available Soon on Google Play</div>
+            <div class="badge">🇲🇾 Designed for Muslim Women in Malaysia</div>
+            
+            <img src="playstore.png" alt="Get it on Google Play" class="playstore-img">
+        </section>
+
+      <section>
+            <h2>🌺 <a href="jadual_haidku_policy.html">Privacy Policy</a></h2>
+           Read our privacy policy
+        </section>
+    </main>
+    
+    <footer>
+       <p>&copy; <span id="year"></span> Jadual Haidku. All rights reserved.</p>
+
+        <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+
+        <p>Designed with love for Muslim sisters everywhere.</p>
+    </footer>
+</body>
+</html>
+
