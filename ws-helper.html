@@ -1,0 +1,253 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Notification Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fdfeec;
+            color: #4f2533;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Change to flex-start for scrolling */
+            min-height: 100vh; /* Ensure it takes at least the full viewport height */
+            margin: 0;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .container {
+            background-color: white;
+            padding: 3rem;
+            margin: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #4f2533;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        input, select {
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid #4f2533;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 1.5rem;
+            padding: 0.75rem;
+            background-color: #4f2533;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #6f3549;
+        }
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .language-btn {
+            background-color: #fdfeec;
+            color: #4f2533;
+            border: 2px solid #4f2533;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .language-btn:hover {
+            background-color: #e6e7d6;
+        }
+        .language-btn.active {
+            background-color: #4f2533;
+            color: #fdfeec;
+        }
+        .language-btn:not(:last-child) {
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="language-switch">
+            <button class="language-btn active" data-lang="en">ENG</button>
+            <button class="language-btn" data-lang="zh">中文</button>
+        </div>
+        <h1 id="formTitle">Shipping Notification</h1>
+       
+        <form id="shippingForm">
+            <label id="logisticLabel" for="logistic">Logistics Name:</label>
+            <input type="text" id="logistic" required value="LW Logistics">
+
+            <label id="receiverNameLabel" for="receiverName">Receiver Name:</label>
+            <input type="text" id="receiverName" required>
+
+            <label id="phoneNumLabel" for="phoneNum">Phone Number:</label>
+            <input type="tel" id="phoneNum" value="+60" required>
+
+            <label id="addressLabel" for="address">Address:</label>
+            <input type="text" id="address" required>
+
+            <label id="cartonNumLabel" for="cartonNum">Number of Cartons:</label>
+            <input type="number" id="cartonNum" min="1" required value="1">
+
+            <label id="companyNameLabel" for="companyName">Company Name:</label>
+            <input type="text" id="companyName" required>
+
+            <label id="estimateTimeLabel" for="estimateTime">Estimated Delivery Time (min):</label>
+            <input type="number" id="estimateTime" required min="1" value="5">
+
+            <label id="codLable" for="codLable">Amount C.O.D:</label>
+            <input type="number" id="codAmount" min="0.00" required value="0.00" step="0.01">
+
+            <label id="languageLabel">Select Language:</label>
+            <div>
+                <label>
+                    <input type="checkbox" name="language" value="English" checked> English
+                </label>
+                <label>
+                    <input type="checkbox" name="language" value="华文" > 中文
+                </label>
+               
+                
+                <label>
+                    <input type="checkbox" name="language" value="Bahasa Malaysia"> Bahasa Malaysia
+                </label>
+            </div>
+
+            <button type="submit">Send Notification</button>
+        </form>
+    </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $('#shippingForm').on('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            var logistic = $('#logistic').val();
+            var receiverName = $('#receiverName').val();
+            var phoneNum = $('#phoneNum').val().replace(/\D/g, ''); // Removing non-numeric characters
+            var address = $('#address').val();
+            var cartonNum = $('#cartonNum').val();
+            var companyName = $('#companyName').val();
+            var estimateTime = $('#estimateTime').val();
+            var codAmount = parseFloat($('#codAmount').val()) || 0;;
+            var selectedLanguages = $('input[name="language"]:checked').map(function() {
+                return this.value;
+            }).get();
+
+            // Check if any language is selected
+            if (selectedLanguages.length === 0) {
+                alert('Please select at least one language.');
+                return;
+            }
+
+            var message = ``;
+
+            var message = "";
+
+selectedLanguages.forEach(function(language) {
+    if (language === "Bahasa Malaysia") {
+        message += `Salam ${receiverName},
+
+${logistic} sedang menghantar ${cartonNum} kotak dari ${companyName} ke ${address}, dan dijadualkan tiba dalam ${estimateTime} minit. Sila bersedia untuk menerima barang anda.
+
+Caj Penghantaran: RM ${codAmount.toFixed(2)}
+
+Jika anda mempunyai arahan penghantaran lain, sila balas mesej ini.
+Terima kasih atas kerjasama anda
+
+
+`;
+    } else if (language === "English") {
+        message += `Hello ${receiverName},
+
+${logistic} is delivering ${cartonNum} cartons from ${companyName} to ${address}, and they are expected to arrive in ${estimateTime} minutes. Please ready for receiving.
+
+Amount COD: RM ${codAmount.toFixed(2)}
+
+If you have any other delivery instructions, please reply to this message.
+Thank you, and have a wonderful day!
+
+
+`;
+    } else if (language === "华文") {
+        message += `你好 ${receiverName},
+
+${logistic} 正在尝试运送 ${cartonNum} 件 ${companyName} 的箱子至 ${address}，预计将在 ${estimateTime} 分钟内送达。请提前做好接收准备。
+
+到付金额: RM ${codAmount.toFixed(2)}
+
+如有其他交付指示，请回复此消息。感谢你的配合！
+
+
+`;
+    }
+});
+
+// WhatsApp URL format
+var whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNum}&text=${encodeURIComponent(message)}`;
+
+console.log(whatsappUrl); // For debugging purposes
+
+            // Redirect to WhatsApp
+            window.open(whatsappUrl, '_blank');
+        });
+
+        // Language control function
+        $('.language-btn').on('click', function() {
+    // Remove active class from all buttons and add it to the clicked button
+    $('.language-btn').removeClass('active');
+    $(this).addClass('active');
+
+    // Get the selected language from the button's data attribute
+    var selectedLang = $(this).data('lang');
+
+    // Update labels based on the selected language
+    if (selectedLang === "en") {
+        $('#formTitle').text("Shipping Notification");
+        $('#logisticLabel').text("Logistics Name:");
+        $('#receiverNameLabel').text("Receiver Name:");
+        $('#phoneNumLabel').text("Phone Number:");
+        $('#addressLabel').text("Address:");
+        $('#cartonNumLabel').text("Number of Cartons:");
+        $('#companyNameLabel').text("Company Name:");
+        $('#estimateTimeLabel').text("Estimated Delivery Time (min):");
+        $('#languageLabel').text("Select Language:");
+        $('#codLable').text("Amount C.O.D:");
+
+    } else if (selectedLang === "zh") {
+        $('#formTitle').text("运输通知");
+        $('#logisticLabel').text("物流公司名称:");
+        $('#receiverNameLabel').text("收件人姓名:");
+        $('#phoneNumLabel').text("电话号码:");
+        $('#addressLabel').text("地址:");
+        $('#cartonNumLabel').text("箱子数量:");
+        $('#companyNameLabel').text("公司名称:");
+        $('#estimateTimeLabel').text("预计抵达时间（分钟）:");
+        $('#languageLabel').text("选择语言:");
+        $('#codLable').text("到付金额：");
+
+    }
+});
+
+    </script>
+</body>
+</html>
